@@ -3,21 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/landingFragment">
+    app:startDestination="@id/pokemonFragment">
 
     <fragment
         android:id="@+id/pokemonFragment"
         android:name="com.datastructblues.pokemonproject.view.PokemonFragment"
         android:label="fragment_pokemon"
-        tools:layout="@layout/fragment_pokemon" />
+        tools:layout="@layout/fragment_pokemon" >
+        <action
+            android:id="@+id/action_pokemonFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.datastructblues.pokemonproject.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="currentPokemonName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="currentPokemonHeight"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="currentPokemonWeight"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/landingFragment"
         android:name="com.datastructblues.pokemonproject.view.LandingFragment"
         android:label="fragment_landing"
-        tools:layout="@layout/fragment_landing" />
+        tools:layout="@layout/fragment_landing" >
+        <action
+            android:id="@+id/action_landingFragment_to_pokemonFragment"
+            app:destination="@id/pokemonFragment" />
+    </fragment>
 </navigation>

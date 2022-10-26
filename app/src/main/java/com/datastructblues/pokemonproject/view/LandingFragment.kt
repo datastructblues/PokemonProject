@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.datastructblues.pokemonproject.R
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class LandingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
