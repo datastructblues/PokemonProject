@@ -7,6 +7,7 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:indeterminateTint="@color/customColor"
         tools:context=".view.PokemonFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +16,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/pokemonList"
+                android:id="@+id/pokemonListRecycler"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="1dp"

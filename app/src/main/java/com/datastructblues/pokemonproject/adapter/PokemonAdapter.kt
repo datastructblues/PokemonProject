@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.datastructblues.pokemonproject.databinding.ItemPokemonBinding
+import com.datastructblues.pokemonproject.model.PokeResult
 import com.datastructblues.pokemonproject.model.PokemonResponse
 
 class PokemonAdapter(): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
-    var pokemonClick: ((String) -> Unit)? = null
-    var pokemonList: List<PokemonResponse.PokeResult> = emptyList<PokemonResponse.PokeResult>()
+    var pokemonClick: ((Int) -> Unit)? = null
+    var pokemonList: List<PokeResult> = emptyList()
 
-    fun setData(list: List<PokemonResponse.PokeResult>) {
+    fun setData(list: List<PokeResult>) {
         pokemonList = list
         notifyDataSetChanged()
     }
@@ -19,7 +20,7 @@ class PokemonAdapter(): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.name.setOnClickListener {
-                pokemonClick?.invoke(pokemonList[adapterPosition].name)
+                pokemonClick?.invoke((adapterPosition+1))
             }
         }
     }

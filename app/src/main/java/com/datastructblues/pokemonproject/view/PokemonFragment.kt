@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.datastructblues.pokemonproject.R
 import com.datastructblues.pokemonproject.adapter.PokemonAdapter
 import com.datastructblues.pokemonproject.databinding.FragmentPokemonBinding
+import com.datastructblues.pokemonproject.model.PokemonResponse
 import com.datastructblues.pokemonproject.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,26 +39,30 @@ class PokemonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.pokemonList.adapter = pokemonAdapter
+        println("hello world")
         initUI()
     }
 
     private fun initUI(){
-       binding.pokemonList.layoutManager = LinearLayoutManager(context)
-       pokemonAdapter.pokemonClick = { strName->
-           sendData(strName)
+       binding.pokemonListRecycler.layoutManager = LinearLayoutManager(context)
+        binding.pokemonListRecycler.adapter = pokemonAdapter
+       pokemonAdapter.pokemonClick = { int->
+           println("int = ${int}")
+           sendData(int)
 
        }
-
+        println("once")
         viewModel.getPokemonList()
-
+        println("sonra")
         viewModel.pokemonList.observe(viewLifecycleOwner, Observer { list ->
             pokemonAdapter.setData(list)
+            println("list = ${list}")
+            println("pokemonAdapter = ${pokemonAdapter.pokemonList.size}")
         })
     }
+    private fun sendData(result:Int){
+        val idData = PokemonFragmentDirections.actionPokemonFragmentToDetailFragment(result)
+        Navigation.findNavController(binding.pokemonListRecycler).navigate(idData)
 
-    private fun sendData(pokemonName:String){
-        val action = PokemonFragmentDirections.actionPokemonFragmentToDetailFragment(pokemonName)
-        Navigation.findNavController(binding.pokemonList).navigate(action)
     }
 }
