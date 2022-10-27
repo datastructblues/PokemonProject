@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id("com.google.dagger.hilt.android")
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -38,6 +40,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.0'
     var retrofit_version = '2.9.0'
     var glide_version = '4.14.2'
     var paging_version = "3.1.1"

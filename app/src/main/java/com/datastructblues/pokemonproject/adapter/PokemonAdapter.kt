@@ -11,11 +11,12 @@ class PokemonAdapter(): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
     var pokemonClick: ((Int) -> Unit)? = null
     var pokemonList: List<PokeResult> = emptyList()
 
+    //Gelen pokemon list adapter'e set edildi
     fun setData(list: List<PokeResult>) {
         pokemonList = list
         notifyDataSetChanged()
     }
-
+    //viewholder icinde click olaylari (pokemon fragmenttan yonetiliyor)
     inner class ViewHolder(val binding: ItemPokemonBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {

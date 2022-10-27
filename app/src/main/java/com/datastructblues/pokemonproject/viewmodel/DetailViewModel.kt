@@ -10,6 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
 class DetailViewModel : ViewModel(){
     private val retrofit: Retrofit = Retrofit.Builder()
@@ -36,6 +37,8 @@ class DetailViewModel : ViewModel(){
             override fun onFailure(call: Call<PokemonModel>, t: Throwable) {
                 detailLoading.value = false
                 call.cancel()
+                //sends data to crashlytics if data on not loaded on detail fragment.
+                throw Exception("Data have not loaded.")
             }
 
         })
