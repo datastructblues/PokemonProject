@@ -20,6 +20,7 @@ class DetailViewModel : ViewModel(){
     private val service: PokemonAPIService = retrofit.create(PokemonAPIService::class.java)
 
     val pokemonInfo = MutableLiveData<PokemonModel>()
+    val detailLoading = MutableLiveData<Boolean>(true)
 
     fun getPokemonInfo(id: Int){
         val call = service.getPokemonInfo(id)
@@ -29,9 +30,11 @@ class DetailViewModel : ViewModel(){
                 response.body()?.let { pokemon ->
                     pokemonInfo.postValue(pokemon)
                 }
+                detailLoading.value = false
             }
 
             override fun onFailure(call: Call<PokemonModel>, t: Throwable) {
+                detailLoading.value = false
                 call.cancel()
             }
 

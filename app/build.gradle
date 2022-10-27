@@ -40,6 +40,7 @@ android {
 dependencies {
     var retrofit_version = '2.9.0'
     var glide_version = '4.14.2'
+    var paging_version = "3.1.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -65,7 +66,10 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:${glide_version}"
 
     //coroutines
-   // implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    //paging
+    implementation("androidx.paging:paging-runtime:$paging_version")
 }
 kapt {
     correctErrorTypes = true

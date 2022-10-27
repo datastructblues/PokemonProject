@@ -1,19 +1,15 @@
 package com.datastructblues.pokemonproject.view
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.datastructblues.pokemonproject.R
 import com.datastructblues.pokemonproject.databinding.FragmentDetailBinding
 import com.datastructblues.pokemonproject.viewmodel.DetailViewModel
-import com.datastructblues.pokemonproject.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +37,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        val idFromList= getIdData()
-        initUI(idFromList)
+        observe(idFromList)
 
     }
 
@@ -54,15 +50,37 @@ class DetailFragment : Fragment() {
     }
 
 
-    private fun initUI(listId:Int){
+    private fun observe(listId:Int){
         viewModel.getPokemonInfo(listId)
         viewModel.pokemonInfo.observe(viewLifecycleOwner) { pokemon ->
             bindingDetail.pokemonName.text = "Pokemon name: ${pokemon.name}"
             bindingDetail.pokemonHeight.text= "Pokemon height: ${pokemon.height}"
             bindingDetail.pokemonWeight.text = "Pokemon weight: ${pokemon.weight}"
+            bindingDetail.overlayButton.text = "Show ${pokemon.name} in overlay"
 
             Glide.with(this).load(pokemon.sprites.front_default).into(bindingDetail.frontImage)
             Glide.with(this).load(pokemon.sprites.back_default).into(bindingDetail.backImage)
+        }
+
+        viewModel.detailLoading.observe(viewLifecycleOwner){ loading ->
+            loading?.let {
+                if(it) {
+                    bindingDetail.detailLoading.visibility = View.VISIBLE
+                    bindingDetail.overlayButton.visibility = View.GONE
+                    bindingDetail.backImage.visibility = View.GONE
+                    bindingDetail.frontImage.visibility = View.GONE
+                    bindingDetail.pokemonName.visibility = View.GONE
+                    bindingDetail.pokemonHeight.visibility = View.GONE
+                    bindingDetail.pokemonWeight.visibility = View.GONE
+                }else{
+                    bindingDetail.detailLoading.visibility = View.GONE
+                    bindingDetail.overlayButton.visibility = View.VISIBLE
+                    bindingDetail.backImage.visibility = View.VISIBLE
+                    bindingDetail.frontImage.visibility = View.VISIBLE
+                    bindingDetail.pokemonName.visibility = View.VISIBLE
+                    bindingDetail.pokemonHeight.visibility = View.VISIBLE
+                    bindingDetail.pokemonWeight.visibility = View.VISIBLE             }
+            }
         }
     }
 }

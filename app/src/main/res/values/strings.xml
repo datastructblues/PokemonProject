@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PokemonProject</string>
+    <string name="app_name">Pokemon Project</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="landing_fragment">Landing Fragment</string>
     <string name ="str_give_permission">Give Permission</string>
@@ -7,4 +7,6 @@
     <string name ="str_pokemon_name">Pokemon Name:</string>
     <string name ="str_pokemon_height">Pokemon Height:</string>
     <string name ="str_pokemon_weight">Pokemon Weight:</string>
+    <string name ="str_close_app">Close Application</string>
+    <string name ="str_show_overlay">Show in overlay</string>
 </resources>
