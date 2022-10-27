@@ -36,16 +36,8 @@ class PokemonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println("hello world")
         observe()
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            binding.pokemonError.visibility = View.GONE
-            binding.pokemonListRecycler.visibility = View.GONE
-            binding.pokemonLoading.visibility = View.VISIBLE
-            viewModel.getPokemonList()
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
+        swipe()
     }
 
     private fun observe(){
@@ -95,5 +87,14 @@ class PokemonFragment : Fragment() {
     private fun sendData(result:Int){
         val idData = PokemonFragmentDirections.actionPokemonFragmentToDetailFragment(result)
         Navigation.findNavController(binding.pokemonListRecycler).navigate(idData)
+    }
+    private fun swipe(){
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.pokemonError.visibility = View.GONE
+            binding.pokemonListRecycler.visibility = View.GONE
+            binding.pokemonLoading.visibility = View.VISIBLE
+            viewModel.getPokemonList()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 }

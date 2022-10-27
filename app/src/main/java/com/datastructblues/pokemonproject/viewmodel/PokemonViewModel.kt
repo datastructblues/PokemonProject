@@ -38,7 +38,7 @@ class PokemonViewModel : ViewModel() {
     }
 
     fun getPokemonList(){
-        val call = service.getPokemonList(20,0)
+        val call = service.getPokemonList(50,0)
         println("PokemonViewModel.getPokemonList")
         println("BASE_URL = ${BASE_URL}")
 

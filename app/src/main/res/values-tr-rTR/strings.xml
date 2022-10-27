@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokemon Project</string>
+    <string name="str_give_permission">İzin Ver</string>
+    <string name="str_network_error">Bağlantı Hatası Lütfen Bağlantınızı Kontrol Edin!</string>
+    <string name="str_pokemon_name">Pokemon Adı:</string>
+    <string name="str_pokemon_height">Pokemon Boyu:</string>
+    <string name="str_pokemon_weight">Pokemon Ağırlığı:</string>
+    <string name="str_close_app">Uygulamayı Kapat:</string>
+    <string name="str_show_overlay">Ekran Üzerinde Göster</string>
+
+</resources>
