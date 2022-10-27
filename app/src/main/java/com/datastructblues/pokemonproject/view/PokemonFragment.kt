@@ -39,7 +39,7 @@ class PokemonFragment : Fragment() {
         observe()
         swipe()
     }
-
+  //observers for livedatas
     private fun observe(){
        binding.pokemonListRecycler.layoutManager = LinearLayoutManager(context)
         binding.pokemonListRecycler.adapter = pokemonAdapter
@@ -84,10 +84,13 @@ class PokemonFragment : Fragment() {
             }
         }
     }
+    //sending id with fragment arguments
     private fun sendData(result:Int){
         val idData = PokemonFragmentDirections.actionPokemonFragmentToDetailFragment(result)
         Navigation.findNavController(binding.pokemonListRecycler).navigate(idData)
     }
+
+    //swipe for refreshlayout if you have connection issues this will reload the all data.
     private fun swipe(){
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.pokemonError.visibility = View.GONE

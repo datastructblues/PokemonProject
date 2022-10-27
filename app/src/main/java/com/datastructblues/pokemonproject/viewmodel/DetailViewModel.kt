@@ -23,6 +23,7 @@ class DetailViewModel : ViewModel(){
     val pokemonInfo = MutableLiveData<PokemonModel>()
     val detailLoading = MutableLiveData<Boolean>(true)
 
+    //request to api
     fun getPokemonInfo(id: Int){
         val call = service.getPokemonInfo(id)
 
